@@ -212,42 +212,43 @@ class ogr extends StatelessWidget {
         ),
         ogrList(),
         ElevatedButton(
+            child: Text("Yeni sayfa"),
             onPressed: ()  {
               // final cevap = await Navigator.of(context).push<bool>(MaterialPageRoute(
-               Future<bool?> pushFeture =  Navigator.of(context).push<bool>(MaterialPageRoute(
-                 builder: (context) {
-                   return Ekran2("Beğendiniz mi");
-                 },
-               )
-               );
-               pushFeture.then((bool? x) => {
-               if(x == true){
-               print("Beğendiiiii"),
-               //throw "hata"
-                  Future.value(true)
-               }
-               else{
-                   Navigator.of(context).push<bool>(
-                   MaterialPageRoute(
-                     builder: (context) {
-                       return Ekran2(
-                           " Keşke beğenseydiniz yeaaaaağ Beğendiniz mi");
-                     },
-                   )
-               )
-            }}).then((x) => {
-              if(x == true){
-                print("Beğendiniz.")
-              }
-            }).onError((error, stackTrace) => {
-
-                             }).whenComplete(() => {print("işler biitttii") });
-
-               print("Yapılacak işlere devam ediyorummmmm");
-            },
-            child: Text("Yeni sayfa"))
+               SOR(context);
+            })
       ],
     );
+  }
+
+  Future<void> SOR(BuildContext context) async {
+    try {
+      bool? cevap =
+          await Navigator.of(context).push<bool>(MaterialPageRoute(
+        builder: (context) {
+          return Ekran2("Beğendiniz mi");
+        },
+      ));
+      if (cevap == true) {
+        print("Beğendiiiii");
+        //throw "HATA OLUSN";
+      } else {
+        cevap =
+            await Navigator.of(context).push<bool>(MaterialPageRoute(
+          builder: (context) {
+            return Ekran2(
+                " Keşke beğenseydiniz yeaaaaağ Beğendiniz mi");
+          },
+        ));
+      }
+      if (cevap == true) {
+        print("BEĞENDİİİ");
+      }
+    } catch (e) {
+      print("HATATATATA");
+    } finally {
+      print("----BİTİTİTİTİT---");
+    }
   }
 }
 
